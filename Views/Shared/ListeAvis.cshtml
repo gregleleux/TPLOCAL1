@@ -1,0 +1,69 @@
+﻿
+@using TPLOCAL1.Models
+@model TPLOCAL1.Models.ListeAvis
+
+<!DOCTYPE html>
+
+<html>
+<!--Style d'affichage'-->
+<style>
+    table {
+        margin-left: 170px;
+    }
+    tr, td {
+        border: 1px solid black;
+    }
+</style>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste des avis</title>
+    <link rel="stylesheet" href="~/ressources/Index.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Liste des avis</h1>
+    </header>
+    <img src="~/ressources/GroupeHN.png" class="image" alt="GroupeHN" />
+    <nav>
+        <ul>
+            <li><a href="/Home/Index/">Accueil</a></li>
+            <li><a href="/Home/Index/Formulaire ">Remplir le formulaire</a></li>
+        </ul>
+    </nav>
+
+    @{ 
+        ListeAvis a = new ListeAvis();
+    <!--Appel de la liste-->
+<table>
+    <tr>
+        <th colspan="3">Liste</th>
+    </tr>
+    <tr>
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>Avis donné</td>
+    </tr>
+    <tr></tr>
+    <!--Tableau des avis-->
+    @foreach (Avis item in a.GetAvis("C:/Users/AspiricGreg/source/repos/TPLOCAL1-base-master/FichierXML/DataAvis.xml"))
+    {
+        <tr>
+            <td>@item.Nom </td>
+            <td>@item.Prenom</td>
+            @if (item.AvisDonne == "O")
+                {
+                    <td style="background-color:green;">Oui</td>
+                }
+            else
+                {
+                    <td style="background-color:red;">Non</td>
+                } 
+        </tr>
+    }
+</table>
+    }
+
+</body>
+</html>
